@@ -1,0 +1,189 @@
+/* Import Roboto Condensed Font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --background-colour: #1E1E1E;
+    --shadow-colour: #0a0a0a;
+    --primary-colour: #EAEAEA;
+    --not-active: #cccccc;
+    --accent-colour: #B380D9;
+}
+
+body {
+    background: var(--background-colour);
+    font-family: 'Roboto Condensed', sans-serif;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, p, span, a {color: var(--primary-colour)}
+
+h1 {font-size: 6rem;}
+h2 {font-size: 4rem;}
+p {font-size: 1.275rem; font-weight: 100;}
+p > span {font-weight: 600}
+
+.fs-page-title {
+    font-size: 6rem;
+    font-weight: 300;
+    text-shadow: 0 0.5rem 0.1em var(--shadow-colour);
+}
+
+.fs-subheading {
+    font-size: 2.5rem;
+    font-weight: 100;
+}
+
+.fs-heading {
+    font-size: 5rem;
+    font-weight: 300;
+    text-shadow: 0 0.5rem 0.1em var(--shadow-colour);
+}
+
+header {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(26, 26, 26, 0.1);
+    backdrop-filter: blur(20px);
+}
+
+section {
+    width: 100%;
+    padding: 2rem 4rem;
+}
+
+.max-width {
+    padding: 0;
+    margin: 0;
+}
+
+header > nav {
+    justify-content: center;
+    display: flex;
+    width: 100%;
+    padding: 1em;
+}
+
+header > nav > ul {
+    gap: 5rem;
+    display: flex;
+}
+
+header > nav > ul > a {
+    display: flex;
+    flex-direction: column;
+    font-size: 2rem;
+    font-weight: 200;
+    text-decoration: none;
+    color: var(--not-active);
+
+    transition: color 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+header > nav > ul > a::after {
+    content: '';
+    display: inline-flex;
+    background: var(--primary-colour);
+    height: 2px;
+    border-radius: 1px;
+    width: 0%;
+    
+    transition: width 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+header > nav > ul > a:hover{color: var(--primary-colour)}
+
+header > nav > ul > a:hover::after {width: 100%}
+
+header > nav > ul > a.current-page::after {width: 100%}
+
+.title-section {
+    width: 100vw;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.title-section > .display-text {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: -10;
+}
+
+.banner {
+    position: relative;
+    width: 100%;
+    height: 60vw;
+    display: flex;
+    opacity: 0;
+    gap: 60%;
+    background: url(../Images/Banner-Images/main-image.png) no-repeat;
+    background-size: cover;
+    justify-content: center;
+
+    animation: forwards page-load-banner-images 2s ease;
+}
+
+.banner > img {
+    align-self: flex-end;
+    height: 105%;
+    object-fit: contain;
+    pointer-events: none;
+    user-select: none;
+    -webkit-filter: drop-shadow(0px 0px 2em var(--shadow-colour));
+    filter: drop-shadow(0px 0px 2em var(--shadow-colour));
+}
+
+@keyframes page-load-banner-images {100% {gap: 0%; opacity: 1;}}
+
+.about-us {
+    margin: auto;
+    display: grid;
+    width: clamp(90%, 60%, 50%);
+    gap: 1rem 3rem;
+}
+
+.about-us-image {
+    grid-row: 2 / 4;
+    height: 45em;
+    background-image: url(../Images/about-us.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+    -webkit-filter: drop-shadow(0px 10px 1em var(--shadow-colour));
+    filter: drop-shadow(0px 10px 1em var(--shadow-colour));
+}
+
+
+.about-us > p:first-of-type {font-size: 2rem;}
+
+@media (min-width: 1000px) {
+    .about-us {
+        grid-template-columns: 6fr 4fr;
+    }
+
+    .about-us > p {
+        height: fit-content;
+    }
+
+    .about-us > h2 {
+        grid-column: span 2;
+        text-align: center;
+    }
+
+    .about-us-image {
+        background-size: contain;
+        height: auto;
+        grid-column: 2 / 3;
+        grid-row: 2 / 5;
+    }
+}
