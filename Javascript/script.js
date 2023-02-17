@@ -42,28 +42,41 @@ audioItems = [
 const listenContainer = document.querySelector('.audio-widget-container');
 
 audioItems.forEach(track => {
-	trackFormatted = (track.replace(` `, `-`).replace(` `, `-`)).toLowerCase();
-	newTrackWidget = document.createElement('div');
+	const trackFormatted = (track.replace(` `, `-`).replace(` `, `-`)).toLowerCase();
+	const newTrackWidget = document.createElement('div');
 	newTrackWidget.classList.add('track-container')
 
-	trackTitle = document.createElement("h3");
+	const trackTitle = document.createElement("h3");
 	trackTitle.textContent = track;
 
-	trackButton = document.createElement("button");
+	const trackButton = document.createElement("button");
 	trackButton.innerHTML = `<i class="fa-solid fa-play"></i>`
 	trackTimeline = document.createElement("div");
 
-	trackAudio = document.createElement("audio");
+	const trackAudio = document.createElement("audio");
 	trackAudio.src = `../Audio-Files/${trackFormatted}.mp3`
+	trackAudio.preload = 'metadata'
 
 	trackButton.addEventListener("click", () => {
 		trackAudio.play()
+		if(trackButton.innerHTML === `<i class="fa-solid fa-play"></i>`) {
+			trackButton.innerHTML = `<i class="fa-solid fa-pause"></i>`;
+		}
+		else {
+			trackAudio.pause();
+			trackButton.innerHTML = `<i class="fa-solid fa-play"></i>`
+		}
 	})
 
-	newTrackWidget.appendChild(trackAudio)
+	newTrackWidget.appendChild(trackAudio);
 	newTrackWidget.appendChild(trackTitle);
 	newTrackWidget.appendChild(trackButton);
 	newTrackWidget.appendChild(trackTimeline);
 
 	listenContainer.appendChild(newTrackWidget);
+});
+
+audioTracks = document.querySelectorAll('.audio-widget-container > .track-container > audio');
+audioTracks.forEach(trackItem => {
+	console.log(trackItem.duration)
 });
