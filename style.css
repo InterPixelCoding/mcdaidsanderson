@@ -224,7 +224,7 @@ header > nav > ul > a.current-page::after {width: 100%}
     display: flex;
     opacity: 0;
     gap: 60%;
-    background: url(/Images/Banner-Images/main-image.png) no-repeat;
+    background: url(Images/Banner-Images/main-image.png) no-repeat;
     background-size: cover;
     justify-content: center;
 
