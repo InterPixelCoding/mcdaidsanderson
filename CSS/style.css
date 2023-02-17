@@ -15,10 +15,11 @@
     --accent-colour: #B380D9;
 }
 
+html, body {overflow-x: clip;}
+
 body {
     background: var(--background-colour);
     font-family: 'Roboto Condensed', sans-serif;
-    overflow-x: hidden;
 }
 
 h1, h2, h3, h4, p, span, a {color: var(--primary-colour)}
@@ -37,6 +38,7 @@ p > span {font-weight: 600}
 .fs-subheading {
     font-size: 2.5rem;
     font-weight: 100;
+    letter-spacing: 0.1rem;
 }
 
 .fs-heading {
@@ -81,6 +83,8 @@ header > nav > ul > a {
     flex-direction: column;
     font-size: 2rem;
     font-weight: 200;
+    letter-spacing: 0.1rem;
+
     text-decoration: none;
     color: var(--not-active);
 
@@ -98,11 +102,105 @@ header > nav > ul > a::after {
     transition: width 400ms cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
+.menu-btn {display: none;}
+
 header > nav > ul > a:hover{color: var(--primary-colour)}
 
 header > nav > ul > a:hover::after {width: 100%}
 
 header > nav > ul > a.current-page::after {width: 100%}
+
+@media (max-width: 950px) {
+    h1 {font-size: 3rem;}
+    h2 {font-size: 2rem;}
+    .fs-page-title {font-size: 4rem;}
+    .fs-subheading {font-size: 2rem;}
+}
+
+@media (max-width: 780px) {
+    header > nav > ul > a {font-size: 1.75rem;}
+    .fs-heading {font-size: 4rem;}
+}
+
+@media (max-width: 720px) {
+    .fs-heading {font-size: 4rem;}
+    .fs-subheading{font-size: 2.75rem; color: var(--primary-colour)}
+    header {
+        
+        position: fixed;
+        transition: all 1s ease;
+    }
+
+    header:has(.menu-active) {
+        position: fixed;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+    .menu-btn {
+        padding: .75rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: var(--primary-colour);
+    }
+    .menu-button {
+        width: 3rem;
+        text-align: center;
+        font-size: 2.5rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--primary-colour);
+    }
+
+    .menu-btn > h3 {
+        font-weight: 100;
+        font-size: 1.5rem;
+    }
+    header > nav {
+        opacity: 0; 
+        pointer-events: none; 
+        align-items: center;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        z-index: -1;
+        transition: opacity 500ms ease;
+        
+    }
+    header > nav.menu-active {
+        opacity: 1;
+        pointer-events: all;
+        height: 100%;
+    }
+    header > nav > ul {
+        gap: 0%;
+        flex-direction: column;
+        align-items: center;
+        transition: 1s ease;
+    }
+    header > nav.menu-active > ul {
+        gap: 5rem;
+    }
+
+    header > nav.menu-active > ul > a {width: fit-content}
+
+    .title-section {margin-top: 4em}
+
+    .about-us {padding: 2.25rem}
+
+    .about-us > p:not(:first-of-type) {
+        width: 100%;
+        text-align: justify;
+    }
+}
+
+@media (max-width: 610px) {
+    .fs-heading {font-size: 3rem;}
+    .fs-page-title {font-size: 3rem; text-align: center;}
+    .display-text > h1 {display: none}
+}
 
 .title-section {
     width: 100vw;
@@ -134,6 +232,8 @@ header > nav > ul > a.current-page::after {width: 100%}
 }
 
 .banner > img {
+    --gap: -5%;
+    margin: 0 var(--gap);
     align-self: flex-end;
     height: 105%;
     object-fit: contain;
@@ -148,17 +248,16 @@ header > nav > ul > a.current-page::after {width: 100%}
 .about-us {
     margin: auto;
     display: grid;
-    width: clamp(90%, 60%, 50%);
-    gap: 1rem 3rem;
+    width: clamp(100%, 60%, 50%);
+    gap: 2rem 3rem;
 }
 
 .about-us-image {
     grid-row: 2 / 4;
-    height: 45em;
+    height: 35em;
     background-image: url(../Images/about-us.png);
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
-    background-position: top center;
     -webkit-filter: drop-shadow(0px 10px 1em var(--shadow-colour));
     filter: drop-shadow(0px 10px 1em var(--shadow-colour));
 }
@@ -166,13 +265,9 @@ header > nav > ul > a.current-page::after {width: 100%}
 
 .about-us > p:first-of-type {font-size: 2rem;}
 
-@media (min-width: 1000px) {
+@media (min-width: 1200px) {
     .about-us {
         grid-template-columns: 6fr 4fr;
-    }
-
-    .about-us > p {
-        height: fit-content;
     }
 
     .about-us > h2 {
@@ -181,9 +276,17 @@ header > nav > ul > a.current-page::after {width: 100%}
     }
 
     .about-us-image {
+        background-position: top center;
         background-size: contain;
         height: auto;
         grid-column: 2 / 3;
         grid-row: 2 / 5;
+    }
+}
+
+@media (max-width: 625px) {
+    .about-us-image {
+        width: 250px;
+        height: 300px;
     }
 }
