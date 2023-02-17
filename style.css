@@ -224,7 +224,7 @@ header > nav > ul > a.current-page::after {width: 100%}
     display: flex;
     opacity: 0;
     gap: 60%;
-    background: url(../Images/Banner-Images/main-image.png) no-repeat;
+    background: url(/Images/Banner-Images/main-image.png) no-repeat;
     background-size: cover;
     justify-content: center;
 
@@ -255,7 +255,7 @@ header > nav > ul > a.current-page::after {width: 100%}
 .about-us-image {
     grid-row: 2 / 4;
     height: 35em;
-    background-image: url(../Images/about-us.png);
+    background-image: url(Images/about-us.png);
     background-size: contain;
     background-repeat: no-repeat;
     -webkit-filter: drop-shadow(0px 10px 1em var(--shadow-colour));
