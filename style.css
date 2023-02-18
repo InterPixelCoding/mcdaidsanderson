@@ -118,7 +118,7 @@ header > nav > ul > a.current-page::after {width: 100%}
     .fs-subheading, .fs-website-heading {font-size: 2rem;}
 }
 
-@media (max-width: 780px) {
+@media (max-width: 800px) {
     header > nav > ul > a {font-size: 1.75rem;}
     .fs-heading {font-size: 4rem;}
 }

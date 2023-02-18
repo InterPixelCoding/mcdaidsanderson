@@ -1,5 +1,4 @@
 window.addEventListener('DOMContentLoaded', (event) => { 
-	console.log('Website fully loaded')
 	// animate in on scroll
 	const observer = new IntersectionObserver((entries) => {
 		entries.forEach((entry => {
@@ -50,23 +49,30 @@ audioItems.forEach(track => {
 	trackTitle.textContent = track;
 
 	const trackButton = document.createElement("button");
-	trackButton.innerHTML = `<i class="fa-solid fa-play"></i>`
-	trackTimeline = document.createElement("div");
+	trackButton.innerHTML = `<img src="../Icons/Play.png" alt="Play">`;
+	const trackTimeline = document.createElement("div");
 
 	const trackAudio = document.createElement("audio");
 	trackAudio.src = `../Audio-Files/${trackFormatted}.mp3`
-	trackAudio.preload = 'metadata'
 
+	trackAudio.onloadedmetadata = () => {
+		const blendAmount = 0;
+		setInterval(function getTimePercentage() {
+			trackTimeline.style.background = 
+			`linear-gradient(90deg, var(--primary-colour) 0%, var(--primary-colour) ${(trackAudio.currentTime / trackAudio.duration) * 100}%, var(--to-play) ${((trackAudio.currentTime / trackAudio.duration) * 100) + blendAmount}%)`
+			}, 250);
+	
 	trackButton.addEventListener("click", () => {
-		trackAudio.play()
-		if(trackButton.innerHTML === `<i class="fa-solid fa-play"></i>`) {
-			trackButton.innerHTML = `<i class="fa-solid fa-pause"></i>`;
-		}
-		else {
-			trackAudio.pause();
-			trackButton.innerHTML = `<i class="fa-solid fa-play"></i>`
-		}
-	})
+			if(trackButton.innerHTML === `<img src="../Icons/Play.png" alt="Play">`) {
+				trackAudio.play()
+				trackButton.innerHTML = `<img src="../Icons/Pause.png" alt="Play">`;
+			}
+			else {
+				trackAudio.pause();
+				trackButton.innerHTML = `<img src="../Icons/Play.png" alt="Play">`
+			}
+		})
+	}
 
 	newTrackWidget.appendChild(trackAudio);
 	newTrackWidget.appendChild(trackTitle);
@@ -76,7 +82,32 @@ audioItems.forEach(track => {
 	listenContainer.appendChild(newTrackWidget);
 });
 
-audioTracks = document.querySelectorAll('.audio-widget-container > .track-container > audio');
-audioTracks.forEach(trackItem => {
-	console.log(trackItem.duration)
+const IconContainer = document.createElement("div");
+const IconTitle = document.createElement("h3")
+IconTitle.textContent = 'Continue Listening on:';
+
+IconContainer.appendChild(IconTitle)
+
+const icons = [
+	{name: 'itunes', link: '#'},
+	{name: 'spotify', link: '#'},
+	{name: 'youtube', link: '#'},
+];
+icons.forEach(icon => {
+	const newIcon = document.createElement("a");
+	newIcon.href = icon.link;
+	newIcon.target = `_blank`;
+
+	const iconImage = document.createElement("img")
+	iconImage.src = `../Icons/${icon.name}.png`;
+	console.log(`${icon.name}.png`)
+
+	newIcon.appendChild(iconImage);
+
+	IconContainer.appendChild(newIcon)
 });
+
+IconContainer.classList.add('track-container');
+IconContainer.classList.add('icon-container');
+
+listenContainer.appendChild(IconContainer)
