@@ -40,16 +40,19 @@ audioItems = [
 
 const listenContainer = document.querySelector('.audio-widget-container');
 
-audioItems.forEach(track => {
+audioItems.forEach( function(track, index) {
 	const trackFormatted = (track.replace(` `, `-`).replace(` `, `-`)).toLowerCase();
 	const newTrackWidget = document.createElement('div');
-	newTrackWidget.classList.add('track-container')
+	newTrackWidget.classList.add('track-container');
+	newTrackWidget.classList.add('instant-show');
 
 	const trackTitle = document.createElement("h3");
 	trackTitle.textContent = track;
 
 	const trackButton = document.createElement("button");
 	trackButton.innerHTML = `<img src="./Icons/Play.png" alt="Play">`;
+	trackButton.classList.add('play')
+
 	const trackTimeline = document.createElement("div");
 
 	const trackAudio = document.createElement("audio");
@@ -60,16 +63,20 @@ audioItems.forEach(track => {
 		setInterval(function getTimePercentage() {
 			trackTimeline.style.background = 
 			`linear-gradient(90deg, var(--primary-colour) 0%, var(--primary-colour) ${(trackAudio.currentTime / trackAudio.duration) * 100}%, var(--to-play) ${((trackAudio.currentTime / trackAudio.duration) * 100) + blendAmount}%)`
-			}, 250);
+			}, 500);
 	
 	trackButton.addEventListener("click", () => {
 			if(trackButton.innerHTML === `<img src="./Icons/Play.png" alt="Play">`) {
 				trackAudio.play()
-				trackButton.innerHTML = `<img src="./Icons/Pause.png" alt="Play">`;
+				trackButton.innerHTML = `<img src="./Icons/Pause.png" alt="Pause">`;
+				trackButton.classList.add('pause');
+				trackButton.classList.remove('play');
 			}
 			else {
 				trackAudio.pause();
-				trackButton.innerHTML = `<img src="./Icons/Play.png" alt="Play">`
+				trackButton.innerHTML = `<img src="./Icons/Play.png" alt="Play">`;
+				trackButton.classList.remove('pause');
+				trackButton.classList.add('play');
 			}
 		})
 	}
@@ -97,10 +104,10 @@ icons.forEach(icon => {
 	const newIcon = document.createElement("a");
 	newIcon.href = icon.link;
 	newIcon.target = `_blank`;
-
+	
 	const iconImage = document.createElement("img")
 	iconImage.src = `./Icons/${icon.name}.png`;
-	console.log(`${icon.name}.png`)
+	iconImage.classList.add('instant-show');
 
 	newIcon.appendChild(iconImage);
 
@@ -109,5 +116,12 @@ icons.forEach(icon => {
 
 IconContainer.classList.add('track-container');
 IconContainer.classList.add('icon-container');
+IconContainer.classList.add('instant-show');
 
-listenContainer.appendChild(IconContainer)
+listenContainer.appendChild(IconContainer);
+
+// Animation Delay
+const instantShow = document.querySelectorAll('.instant-show');
+instantShow.forEach(function(element, index) {
+	element.style.setProperty("--load-delay", `${index * 200}ms`);
+})

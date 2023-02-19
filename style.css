@@ -51,13 +51,40 @@ header {
     position: sticky;
     top: 0;
     z-index: 10;
-    background: rgba(26, 26, 26, 0.1);
     backdrop-filter: blur(20px);
+    background: rgba(26, 26, 26, 0.1);
+    background: transparent;
+    transform: translateY(-100%);
+    animation: forwards navigation-onload 2s 100ms ease;
+}
+
+@keyframes navigation-onload {
+    100% {transform: translateY(0%);}
 }
 
 section {
     width: 100%;
     padding: 2rem 4rem;
+}
+
+.hidden {
+    opacity: 0;
+    transform: translateY(-2rem) rotateY(30deg);
+}
+
+.show {
+    opacity: 1;
+    transform: translateY(0rem) rotateY(0deg);
+    transition: all 1s ease;
+}
+
+.instant-show {
+    opacity: 0; transform: translateY(-2rem) rotateY(30deg);
+    animation: forwards instant-show 500ms var(--load-delay) ease;
+}
+
+@keyframes instant-show {
+    100% {opacity: 1; transform: translateY(0rem) rotateY(0deg)}
 }
 
 .max-width {
@@ -124,12 +151,15 @@ header > nav > ul > a.current-page::after {width: 100%}
 }
 
 @media (max-width: 750px) {
+    .small-hidden {display: none}
     .fs-heading {font-size: 4rem;}
     .fs-website-heading {font-size: 2.75rem; color: var(--primary-colour)}
     header {
-        
+        border-bottom: 2px solid var(--primary-colour);
         position: fixed;
         transition: all 1s ease;
+        transform: none;
+        animation: none;
     }
 
     header:has(.menu-active) {
@@ -139,7 +169,7 @@ header > nav > ul > a.current-page::after {width: 100%}
     }
 
     .menu-btn {
-        padding: .75rem;
+        padding: .5rem 1rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -187,9 +217,9 @@ header > nav > ul > a.current-page::after {width: 100%}
 
     header > nav.menu-active > ul > a {width: fit-content}
 
-    .title-section {margin-top: 4em}
+    .title-section {margin-top: 5rem; margin-bottom: 1rem;}
 
-    .about-us {padding: 2.25rem}
+    .about-us {padding: .5rem 2.25rem}
 
     .about-us > p:not(:first-of-type) {
         width: 100%;
