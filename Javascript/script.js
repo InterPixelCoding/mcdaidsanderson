@@ -49,11 +49,11 @@ audioItems.forEach(track => {
 	trackTitle.textContent = track;
 
 	const trackButton = document.createElement("button");
-	trackButton.innerHTML = `<img src="../Icons/Play.png" alt="Play">`;
+	trackButton.innerHTML = `<img src="./Icons/Play.png" alt="Play">`;
 	const trackTimeline = document.createElement("div");
 
 	const trackAudio = document.createElement("audio");
-	trackAudio.src = `../Audio-Files/${trackFormatted}.mp3`
+	trackAudio.src = `./Audio-Files/${trackFormatted}.mp3`
 
 	trackAudio.onloadedmetadata = () => {
 		const blendAmount = 0;
@@ -63,13 +63,13 @@ audioItems.forEach(track => {
 			}, 250);
 	
 	trackButton.addEventListener("click", () => {
-			if(trackButton.innerHTML === `<img src="../Icons/Play.png" alt="Play">`) {
+			if(trackButton.innerHTML === `<img src="./Icons/Play.png" alt="Play">`) {
 				trackAudio.play()
-				trackButton.innerHTML = `<img src="../Icons/Pause.png" alt="Play">`;
+				trackButton.innerHTML = `<img src="./Icons/Pause.png" alt="Play">`;
 			}
 			else {
 				trackAudio.pause();
-				trackButton.innerHTML = `<img src="../Icons/Play.png" alt="Play">`
+				trackButton.innerHTML = `<img src="./Icons/Play.png" alt="Play">`
 			}
 		})
 	}
@@ -99,7 +99,7 @@ icons.forEach(icon => {
 	newIcon.target = `_blank`;
 
 	const iconImage = document.createElement("img")
-	iconImage.src = `../Icons/${icon.name}.png`;
+	iconImage.src = `./Icons/${icon.name}.png`;
 	console.log(`${icon.name}.png`)
 
 	newIcon.appendChild(iconImage);
