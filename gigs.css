@@ -1,0 +1,87 @@
+:root {
+    --background-colour: #1E1E1E;
+    --shadow-colour: #0a0a0a;
+    --primary-colour: #EAEAEA;
+    --not-active: #cccccc;
+    --accent-colour: #B380D9;
+}
+
+.gigs-section {
+    display: flex;
+    padding: 1rem 4rem;
+    gap: 2.75rem;
+}
+.timeline {
+    position: relative;
+    height: 100%;
+    width: 4px;
+    background: var(--not-active);
+}
+.gigs-container {
+    display: flex;
+    flex-direction: column;
+}
+.timeline::before, .timeline::after {
+    position: absolute;
+    content: '';
+    width: 2rem;
+    height: 4rem;
+    background: linear-gradient(var(--background-colour), transparent);
+}
+.timeline::before {top: 0;}
+
+.timeline::after {
+    bottom: 0;
+    background: linear-gradient(transparent, var(--background-colour));
+}
+
+.gig-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+    max-width: 80vw;
+}
+
+.gig-container:not(:has(h2.today)) {
+    margin-block: 2.5rem;
+}
+
+.gig-container > p {
+    max-width: 50vw;
+}
+
+.gig-container:not(:has(.today))::before {
+    content: url(Icons/music-note.svg);
+    position: absolute;
+    width: 3.5rem;
+    top: 3rem;
+    left: -4.75rem;
+}
+
+span.date {
+    color: var(--not-active);
+    font-size: 1.5rem;
+}
+
+h2.location {
+    color: var(--accent-colour);
+    font-size: 3rem;
+    font-weight: 550;
+}
+
+.gig-container:has(h2.today) {max-width: 90vw;}
+
+h2.today {
+    color: var(--primary-colour); 
+    font-weight: 400;
+    font-size: 2.5rem;
+}
+
+@media (max-width: 600px) {
+    .gigs-section {padding-inline: 2.25rem}
+    h2.location {font-size: 2.75rem;} 
+    .gig-container{max-width: 100vw;} 
+    h2.today{font-size: 2rem;}
+}
+@media (max-width: 500px) {h2.location:not(h2.today) {font-size: 2.35rem;}}
