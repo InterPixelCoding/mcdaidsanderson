@@ -13,10 +13,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
 	const hiddenElements = document.querySelectorAll('.hidden');
 	hiddenElements.forEach((el) => observer.observe(el));
 
-	// height: auto hack with javascript
-	const header = document.querySelector('header')
-	var headerHeight = header.offsetHeight;
-	header.style.height =`${headerHeight}px`
+const header = document.querySelector('header')
+var headerHeight = header.offsetHeight;
+
+// height: auto hack with javascript
+setTimeout(hackHeight, 1000)
+function hackHeight() {
+	header.style.height =`${headerHeight+1}px`
+}
 
 	const menuButton = document.querySelector('.menu-button');
 	const menu = document.querySelector('header > nav')
@@ -25,7 +29,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 		if(menuButton.innerHTML === `<i class="fa-solid fa-bars"></i>`) {
 			header.style.height = `100%`
 			menuButton.innerHTML = `<i class="fa-solid fa-xmark"></i>`;
-		} else {menuButton.innerHTML = `<i class="fa-solid fa-bars"></i>`; header.style.height = `${headerHeight}px`}
+		} else {menuButton.innerHTML = `<i class="fa-solid fa-bars"></i>`; header.style.height = `${headerHeight+1}px`}
 	})
 });
 
