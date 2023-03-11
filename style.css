@@ -319,6 +319,7 @@ header > nav > ul > a.current-page::after {width: 100%}
 
 @media (max-width: 625px) {
     .about-us-image {
+        grid-row: 2 / 3;
         width: 250px;
         height: 300px;
     }
