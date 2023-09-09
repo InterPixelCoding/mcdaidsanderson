@@ -47,6 +47,16 @@
     animation: forwards bar-load 5s var(--load-delay) cubic-bezier(0.075, 0.82, 0.165, 1)
 }
 
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+.video-iframe {
+    aspect-ratio: 16 / 9;
+    width: 60vw;
+}
+
 @keyframes bar-load {100% {width: 100%}}
 
 .icon-container {
@@ -66,8 +76,11 @@
 @media (max-width: 1010px) {.audio-widget-container {grid-template-columns: repeat(2, 1fr); margin: 1.5rem auto; width: 95%}}
 @media (max-width: 850px)  {
     .track-container > h3 {height: 2.5em;}
+    .center {margin: 0; padding: 0; margin-bottom: 2rem;}
+    .video-iframe {width: 90vw;}
 }
 @media (max-width: 660px) {
     .audio-widget-container {grid-template-columns: repeat(1, 1fr);}
     .track-container > h3 {height: 2em}
 }
+
