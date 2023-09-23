@@ -76,6 +76,7 @@
 .buy-now > button {
     padding: .5rem;
     display: flex;
+    flex-direction: row-reverse;
     gap: 1rem;
     background: var(--accent-translucent);
     border: 1px var(--not-active) solid;
@@ -104,4 +105,5 @@
     backdrop-filter: blur(5px);
     display: grid;
     place-items: center;
+    transition: 300ms ease all;
 }
