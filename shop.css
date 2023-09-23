@@ -1,0 +1,93 @@
+:root {
+    --si-height: 40vh;
+    --background-colour: #1E1E1E;
+    --shadow-colour: #0a0a0a;
+    --primary-colour: #EAEAEA;
+    --not-active: #cccccc;
+    --accent-colour: #B380D9;
+    --accent-translucent: #d49bff50;
+    --to-play: #6f6f6f;
+}
+
+.si-master {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 5vh;
+    height: var(--si-height);
+}
+
+.cd-cover {
+    aspect-ratio: 1;
+    border-radius: .5rem;
+    height: var(--si-height);
+    box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.5);
+}
+
+.si-container {
+    display: flex;
+    width: 60vw;
+    gap: 1.5vw;
+}
+
+.si-info {
+    display: flex; flex-direction: column;
+    gap: 1rem;
+}
+
+.si-par {font-weight: 400;}
+
+.si-title {font-weight: 500;}
+
+.links {
+    display: flex;
+    margin-top: auto;
+    width: 100%;
+    gap: 1rem;
+    align-items: center;
+}
+
+.links > a > img {
+    height: 2rem;
+    object-fit: cover;
+    object-position: center;
+    filter: drop-shadow(0 5px 1rem var(--shadow-colour));
+}
+
+.track-titles {font-size: 1.25rem; font-weight: 100; margin-top: auto;}
+
+.track-titles > span:not(:last-child)::after{
+    content: '·';
+    margin-inline: .5em;
+    display: inline-block;
+}
+
+.buy-now {
+    margin-left: auto;
+    color: var(--not-active);
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.buy-now > button {
+    padding: .5rem;
+    display: flex;
+    gap: 1rem;
+    background: var(--accent-translucent);
+    border: 1px var(--not-active) solid;
+    border-radius: .5rem;
+    align-items: center;
+    font-size: 1.5rem;
+    color: var(--not-active);
+    font-family: 'Roboto Condensed', sans-serif;
+    cursor: pointer;
+}
+
+.buy-now > button > img {height: 2rem;}
+
+.price {
+    font-size: 3rem;
+    font-weight: 100;
+}
