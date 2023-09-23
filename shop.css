@@ -12,9 +12,11 @@
 .si-master {
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-direction: column;
     gap: 5vh;
     height: var(--si-height);
+    height: fit-content;
 }
 
 .cd-cover {
@@ -90,4 +92,16 @@
 .price {
     font-size: 3rem;
     font-weight: 100;
+}
+
+.pop-up.disabled {pointer-events: none; opacity: 0;}
+
+.pop-up {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    backdrop-filter: blur(5px);
+    display: grid;
+    place-items: center;
 }
