@@ -12,16 +12,51 @@ const CDObjectArray = [
         appleMusicLink: '#',
 
         price: 19.99
-    }
+    },
+    {
+        folder: 'my-folk-1',
+        title: 'My Folk 2',
+        info: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet ex possimus reprehenderit? Iure ea incidunt facilis doloribus illo qui rerum laboriosam libero ratione ullam! Animi distinctio tempora minima dicta voluptas harum inventore atque, quod similique neque ex? Nesciunt at excepturi id saepe amet iste. ',
+        tracks: [
+            'Track 1', 'Track 2', 'Track 3', 'Track 4', 'Track 5', 'Track 6', 'Track 7', 'Track 8', 'Track 9', 'Track 10',  
+        ],
+
+        youtubeLink: '#',
+        spotifyLink: '#',
+        appleMusicLink: '#',
+
+        price: 15.99
+    },
 ]
 
 
 const shopSection = document.querySelector('.si-master')
 
+// Add Class to multiple objects //
+function addClass(className, objectArray) {
+    if (typeof className !== 'string' || className.trim() === '') {
+      console.error('Invalid class name');
+      return;
+    }
+  
+    if (!Array.isArray(objectArray)) {
+      console.error('Second argument must be an array');
+      return;
+    }
+    objectArray.forEach(function (element) {
+      if (element instanceof Element) {
+        element.classList.add(className);
+      } else {
+        console.error('Invalid element in the array:', element);
+      }
+    });
+}
+
 // Generate Shop Items
 CDObjectArray.forEach(function(cd, index){
         const newShopItem = document.createElement("div");
-            const cdCover = document.createElement("img");
+            const cdCover = document.createElement("div");
+                const mobilePrice = document.createElement("span")
             const shopItemInfo = document.createElement("div");
                 const title = document.createElement("h2");
                 const paragraph = document.createElement("p");
@@ -43,9 +78,9 @@ CDObjectArray.forEach(function(cd, index){
         trackTitles.classList.add('track-titles');
         links.classList.add('links');
         buyNowContainer.classList.add('buy-now');
-        price.classList.add('price');
+        price.classList.add('price', 'mobile-hide');
 
-        cdCover.src = `./Shop/${cd.folder}/cd-cover.png`
+        cdCover.style.backgroundImage = `url('./Shop/${cd.folder}/cd-cover.png')`
         title.textContent = cd.title;
         paragraph.textContent = cd.info;
         cd.tracks.forEach( function(track, index) {
@@ -62,7 +97,10 @@ CDObjectArray.forEach(function(cd, index){
 
         buyNowButton.textContent = 'Buy Now'
         buyNowButtonIcon.src = './Icons/buy-now.svg'
-        price.textContent = cd.price;
+        price.textContent = '£' + cd.price;
+        mobilePrice.textContent = '£' + cd.price
+
+        addClass('instant-show', [buyNowContainer, youtubeLink, spotifyLink, appleMusicLink, title, paragraph, trackTitles, links, cdCover])
 
                         buyNowButton.appendChild(buyNowButtonIcon)
                     buyNowContainer.appendChild(buyNowButton);
@@ -75,6 +113,7 @@ CDObjectArray.forEach(function(cd, index){
             shopItemInfo.appendChild(paragraph);
             shopItemInfo.appendChild(trackTitles);
             shopItemInfo.appendChild(links);
+                cdCover.appendChild(mobilePrice);
         newShopItem.appendChild(cdCover);
         newShopItem.appendChild(shopItemInfo);
     shopSection.appendChild(newShopItem);
@@ -87,7 +126,8 @@ cdCovers.forEach(cd => {
     cd.addEventListener("click", () => {
         popUp.classList.remove('disabled');
         const newPopUp = document.createElement("img");
-        newPopUp.src = cd.src;
+        backgroundImageFormatted = String(cd.style.backgroundImage);
+        newPopUp.src = backgroundImageFormatted.substr(5, backgroundImageFormatted.length - 7);
         newPopUp.style.height = '80vh';
         newPopUp.style.zIndex = 200;
         newPopUp.style.aspectRatio = '1'
@@ -98,3 +138,4 @@ cdCovers.forEach(cd => {
         })
     })
 })
+

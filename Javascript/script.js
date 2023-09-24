@@ -34,7 +34,9 @@ function hackHeight() {
 });
 
 // Animation Delay
-const instantShow = document.querySelectorAll('.instant-show');
-instantShow.forEach(function(element, index) {
-	element.style.setProperty("--load-delay", `${index * 300}ms`);
-});
+document.addEventListener("DOMContentLoaded", () => {
+	const instantShow = document.querySelectorAll('.instant-show');
+	instantShow.forEach(function(element, index) {
+		element.style.setProperty("--load-delay", `${index * 50}ms`);
+	});
+})
