@@ -5,10 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/00c3160031.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="contact.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="shop.css">
     <script src="./Javascript/script.js" defer></script>
-    <script src="shop.js" defer></script>
+    <script src="./Javascript/shop.js" defer></script>
     <title>McDaid & Sanderson - Contact</title>
 </head>
 <body>
@@ -35,6 +36,21 @@
     </section>
     <section class="section si-master hidden">
     </section>
-    <div class="pop-up disabled"></div>
+    <div class="pop-up disabled">
+        <div class="checkout disabled">
+            <form action="https://formsubmit.co/blake.wollston@gmail.com" method="POST">
+                <input class="name" type="First-Name" placeholder="First Name">
+                <input class="name" type="Surname" placeholder="Last Name">
+                <span>Shipping Address</span>
+                <input type="Address-Line-1" placeholder="Address Line 1">
+                <input type="Address-Line-2" placeholder="Address Line 2">
+                <input type="City" placeholder="City">
+                <input type="Post-Code" placeholder="Post Code">
+                <input type="email" placeholder="Email">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_autoresponse" value="Thanks for contacting, your message has been received and we will respond as soon as possible">
+            </form>
+        </div>
+    </div>
 </body>
 </html>

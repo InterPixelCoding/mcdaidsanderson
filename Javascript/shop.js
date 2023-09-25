@@ -69,6 +69,11 @@ CDObjectArray.forEach(function(cd, index){
                         const buyNowButton = document.createElement("button");
                             const buyNowButtonIcon = document.createElement("img");
                         const price = document.createElement("span");
+                    const checkout = document.querySelector('.checkout')
+                        buyNowButton.addEventListener("click", () => {
+                            popUp.classList.remove('disabled')
+                            checkout.classList.remove('disabled')
+                        })
 
         newShopItem.classList.add('si-container');
         cdCover.classList.add('cd-cover');
@@ -125,6 +130,7 @@ const popUp = document.querySelector('.pop-up')
 cdCovers.forEach(cd => {
     cd.addEventListener("click", () => {
         popUp.classList.remove('disabled');
+        popUp.classList.add('click-off')
         const newPopUp = document.createElement("img");
         backgroundImageFormatted = String(cd.style.backgroundImage);
         newPopUp.src = backgroundImageFormatted.substr(5, backgroundImageFormatted.length - 7);
@@ -133,8 +139,11 @@ cdCovers.forEach(cd => {
         newPopUp.style.aspectRatio = '1'
         popUp.appendChild(newPopUp)
         popUp.addEventListener("click", () => {
-            newPopUp.remove();
-            popUp.classList.add('disabled')
+            if(popUp.classList.contains('click-off')) {
+                newPopUp.remove();
+                popUp.classList.add('disabled')
+                popUp.classList.remove('click-off')
+            }
         })
     })
 })
