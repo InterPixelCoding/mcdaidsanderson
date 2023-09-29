@@ -71,6 +71,13 @@ CDObjectArray.forEach(function(cd, index){
                         const price = document.createElement("span");
                     const checkout = document.querySelector('.checkout')
                         buyNowButton.addEventListener("click", () => {
+                            const checkoutImage = document.querySelector('.checkout > .basket > .cd-cover');
+                            const checkoutPrice = document.querySelector('.total-price')
+                            const checkoutShopItem = document.querySelector('.name-of-product')
+
+                            checkoutShopItem.textContent = cd.title;
+                            checkoutPrice.textContent = 'Price: £' + cd.price;
+                            checkoutImage.style.backgroundImage = cdCover.style.backgroundImage;
                             popUp.classList.remove('disabled')
                             checkout.classList.remove('disabled')
                         })
@@ -125,8 +132,10 @@ CDObjectArray.forEach(function(cd, index){
 })
 
 // Show full Image
-const cdCovers = document.querySelectorAll('.cd-cover');
+const cdCovers = document.querySelectorAll('.cd-cover:not(.no-hover)');
 const popUp = document.querySelector('.pop-up')
+const checkout = document.querySelector('.checkout')
+
 cdCovers.forEach(cd => {
     cd.addEventListener("click", () => {
         popUp.classList.remove('disabled');
@@ -146,5 +155,11 @@ cdCovers.forEach(cd => {
             }
         })
     })
+})
+
+// Exit button
+const exit = document.querySelector('.exit')
+exit.addEventListener("click", () => {
+    addClass('disabled', [checkout, popUp])
 })
 
