@@ -141,6 +141,8 @@ form > button {
     aspect-ratio: 1;
 }
 
+form {gap: .5rem}
+
 form > span {
     color: var(--not-active);
     padding: 2rem 0 1rem 0;
@@ -161,13 +163,15 @@ form > span {
     font-size: 2rem; 
     font-weight: 500;
     margin-top: auto;
+    text-decoration: underline;
+    text-underline-offset: 5px;
 }
 
 .payment-options {
     display: grid;
     place-items: center;
     font-size: 3rem;
-    width: 40vw;
+    width: 30vw;
     background: rgba(255, 255, 255, 0.119);
     border-radius: 1.125rem;
 }
@@ -186,6 +190,20 @@ form > span {
         grid-template-columns: repeat(6, 1fr);
     }
     .buy-now {grid-column-start: 1; grid-column-end: 7; width: 100%; justify-content: left;}
+    body:has(:not(.checkout.disabled)) {overflow: hidden}
+    .checkout {
+        flex-direction: column;
+        height: auto;
+        width: 60vw;
+        height: 80vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+        align-items: center;
+    }
+    form {width: 100%; max-width: none;}
+    form > span {text-align: center; font-size: 2.5rem;}
+    .payment-options {height: 25em; width: 90%}
+    .cd-cover {width: 25vh; height: 25vh}
 }
 @media (max-width: 1450px) {.si-container{width: 80vw;}}
 @media (max-width: 1100px) {
@@ -197,6 +215,8 @@ form > span {
     .buy-now {margin-left: auto; justify-content: right;}    
 }
 @media (max-width: 950px) {
+    .checkout {gap: 5em}
+    .basket > .cd-cover {width: 20vh; height: 20vh;}
     .si-info {justify-content: center;}
     .links {
         display: grid;
@@ -206,12 +226,18 @@ form > span {
     .si-title {font-size: 4rem;}
     .buy-now {grid-column-start: 1; grid-column-end: 14; width: 100%; justify-content: center;}
     .links > a:nth-child(1) {grid-column-start: 6;}
+    .checkout {width: 90vw}
 }
 
 @media (max-width: 660px) {
     .si-container {width: 80vw;} 
     .si-title{font-size: 3rem;}
-     .si-par{font-weight: 100;}
+    .si-par{font-weight: 100;}
+   form {
+       display: flex;
+       flex-direction: column;
+    }
+    form > * {width: 100%;}
 }
 @media (max-width: 500px) {
     span.price.mobile-hide {display: none;}

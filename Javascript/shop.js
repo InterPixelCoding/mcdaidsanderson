@@ -76,7 +76,7 @@ CDObjectArray.forEach(function(cd, index){
                             const checkoutShopItem = document.querySelector('.name-of-product')
 
                             checkoutShopItem.textContent = cd.title;
-                            checkoutPrice.textContent = 'Price: £' + cd.price;
+                            checkoutPrice.textContent = 'Total Price: £' + cd.price;
                             checkoutImage.style.backgroundImage = cdCover.style.backgroundImage;
                             popUp.classList.remove('disabled')
                             checkout.classList.remove('disabled')
