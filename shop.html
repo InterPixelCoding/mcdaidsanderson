@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="contact.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="shop.css">
+    <script
+      src="https://www.paypal.com/sdk/js?components=buttons,card-fields&client-id=AZqZYX6m92fronLcBgBGER-yBxNghl-GmzQP_Yy4pfFHfepaXOT6LmttRGntJnpQjEIjKNQlClQkyVih">
+    </script>
     <script src="./Javascript/script.js" defer></script>
     <script src="./Javascript/shop.js" defer></script>
     <title>McDaid & Sanderson - Contact</title>
@@ -56,8 +59,14 @@
                 <h3 class="name-of-product">Name of Product</h3>
                 <span class="total-price">Total Price: £</span>
             </div>
-            <div class="payment-options">
-                <span>Payment Options</span>
+            <div class="payment-options" id="paypal-button-container">
+                <div id="checkout-form">
+                    <div id="card-name-field-container"></div>
+                    <div id="card-number-field-container"></div>
+                    <div id="card-expiry-field-container"></div>
+                    <div id="card-cvv-field-container"></div>
+                    <button id="card-field-submit-button" type="button">Pay now with Card Fields</button>
+                   </div>
             </div>
             <svg class="exit" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M3.23047 29.9999L30 3.23035" stroke="white" stroke-width="5" stroke-linecap="round"/>
