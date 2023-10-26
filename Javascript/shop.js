@@ -52,7 +52,7 @@ function addClass(className, objectArray) {
     });
 }
 
-function getElements(masterContainer) {
+function getElements() {
     // Define the selectors for the iframe-contained elements
     const selectors = ['.card-field-name', '.card-field-number', '.card-field-expiry', '.card-field-cv'];
   
@@ -77,13 +77,6 @@ function getElements(masterContainer) {
   
     return elements;
 }
-  
-  // Example usage:
-  const masterContainer = document.querySelector('#checkout-form');
-  const styleElements = getElements(masterContainer);
-  
-  console.log(styleElements);
-  
 
 // Generate Shop Items
 CDObjectArray.forEach(function(cd, index){
@@ -107,7 +100,7 @@ CDObjectArray.forEach(function(cd, index){
                             // Style Credit Card Elements
                             setTimeout(() => {
                                 console.log('timeout finished')
-                                const styleElements = document.querySelector('#checkout-form')
+                                const styleElements = getElements();
                                 console.log(styleElements)
                             }, 5000);
 
