@@ -185,12 +185,23 @@ form > span {
 #checkout-form {
     width: 100%;
     padding: 1.125rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
-#card-name-field-container {
-    background: red;
+#checkout-form > div {
+    width: 50%;
+}
+
+#checkout-form > button {
+    background: white;
+    font-family: inherit;
+    color: grey;
+    font-size: 1.125rem;
+    font-weight: 600;
+    padding: 1.125rem;
+    width: 50%;
 }
 
 @media (min-width: 2150px) {.si-container{ width: 50vw}}

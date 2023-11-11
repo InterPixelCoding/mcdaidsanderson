@@ -52,32 +52,6 @@ function addClass(className, objectArray) {
     });
 }
 
-function getElements() {
-    // Define the selectors for the iframe-contained elements
-    const selectors = ['.card-field-name', '.card-field-number', '.card-field-expiry', '.card-field-cv'];
-  
-    // Create an object to store the elements
-    const elements = {};
-  
-    // Find and access the iframes within the masterContainer
-    const iframes = document.querySelectorAll('#checkout-form > div > div > iframe');
-  
-    iframes.forEach((iframe, index) => {
-      // Access the iframe's content document
-      const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-  
-      // Find the elements using the provided selectors and store them in the elements object
-      selectors.forEach(selector => {
-        const element = iframeDocument.querySelector(selector);
-        if (element) {
-          elements[selector] = element;
-        }
-      });
-    });
-  
-    return elements;
-}
-
 // Generate Shop Items
 CDObjectArray.forEach(function(cd, index){
         const newShopItem = document.createElement("div");
@@ -97,13 +71,6 @@ CDObjectArray.forEach(function(cd, index){
                         const price = document.createElement("span");
                     const checkout = document.querySelector('.checkout')
                         buyNowButton.addEventListener("click", () => {
-                            // Style Credit Card Elements
-                            setTimeout(() => {
-                                console.log('timeout finished')
-                                const styleElements = getElements();
-                                console.log(styleElements)
-                            }, 5000);
-
                             const checkoutImage = document.querySelector('.checkout > .basket > .cd-cover');
                             const checkoutPrice = document.querySelector('.total-price')
                             const checkoutShopItem = document.querySelector('.name-of-product')
@@ -199,6 +166,12 @@ exit.addEventListener("click", () => {
 // Render the button component
 paypal
   .Buttons({
+    // Styles
+    style: {
+        color:  'silver',
+        shape:  'pill',
+        label:  'paypal'
+      },
     // Sets up the transaction when a payment button is clicked
     createOrder: function (data) {
       return fetch("myserver.com/api/orders", {
@@ -219,17 +192,11 @@ paypal
       })
         .then((response) => response.json())
         .then((orderData) => {
-          // Successful capture! For dev/demo purposes:
           console.log("Capture result", orderData, JSON.stringify(orderData, null, 2));
           var transaction = orderData.purchase_units[0].payments.captures[0];
-          // Show a success message within this page. For example:
-          // var element = document.getElementById('paypal-button-container');
-          // element.innerHTML = '<h3>Thank you for your payment!</h3>';
-          // Or go to another URL: actions.redirect('thank_you.html');
         });
     },
     onError: function (error) {
-        // Do something with the error from the SDK
     }
   })
   .render("#paypal-button-container");
