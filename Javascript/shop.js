@@ -2,27 +2,15 @@ const CDObjectArray = [
     {
         folder: 'my-folk-1',
         title: 'My Folk 1',
-        info: `Although both Brian and Michael are members of the band 'Kinfolk' unfortunately the band members all live in different parts of the country.  As a result getting together has its challenges!
-
- 
-
-        However Brian continues to write songs and took the opportunity, particularly during the Covid lockdown period, to work on some solo material. "I wanted to write songs that were more relevant to me personally" says Brian speaking about his debut solo album 'My Folk 1'. "They should relate to my life experiences"
-        
-         
-        
-        The songs are undoubtedly folk and acoustic based but it is influenced by many genres of music and the use of vocal harmonies. The album covers a mix of subjects and topics that hopefully make you think and I'm sure that we can all relate to in some way at different periods in our lives. 
-        
-         
-        
-        Michael also plays on the album and enhances each of the songs he appears on with his own distinct and exceptional fiddle playing.
-        
-         
-        
-        As a result of the work they done together on the album and their ongoing work together since, Brian and Michael's musical relationship has really developed and continues to flourish! 
-        
-         
-        
-        Both are excited by their new venture together, 'McDaid & Sanderson'!`,
+        info: 
+`
+Although both Brian and Michael are members of the band 'Kinfolk' unfortunately the band members all live in different parts of the country.  As a result getting together has its challenges!
+However Brian continues to write songs and took the opportunity, particularly during the Covid lockdown period, to work on some solo material. "I wanted to write songs that were more relevant to me personally" says Brian speaking about his debut solo album 'My Folk 1'. "They should relate to my life experiences"
+The songs are undoubtedly folk and acoustic based but it is influenced by many genres of music and the use of vocal harmonies. The album covers a mix of subjects and topics that hopefully make you think and I'm sure that we can all relate to in some way at different periods in our lives. 
+Michael also plays on the album and enhances each of the songs he appears on with his own distinct and exceptional fiddle playing.
+As a result of the work they done together on the album and their ongoing work together since, Brian and Michael's musical relationship has really developed and continues to flourish! 
+Both are excited by their new venture together, 'McDaid & Sanderson'!
+`,
         tracks: [
             'Glasgow Girl', 
             'My Wee Angel', 
@@ -109,7 +97,7 @@ CDObjectArray.forEach(function(cd, index){
 
         cdCover.style.backgroundImage = `url('./Shop/${cd.folder}/cd-cover.png')`
         title.textContent = cd.title;
-        paragraph.textContent = cd.info;
+        paragraph.innerHTML = (cd.info).replace(/\n/g, "<br>");
         cd.tracks.forEach( function(track, index) {
             newTrackSpan = document.createElement("span");
             newTrackSpan.textContent = cd.tracks[index];
@@ -177,96 +165,99 @@ exit.addEventListener("click", () => {
     addClass('disabled', [checkout, popUp])
 })
 
-// Render the button component
+function doPayment(price) {
+    // Render the button component
 paypal
-  .Buttons({
-    // Styles
-    style: {
-        color:  'silver',
-        shape:  'pill',
-        label:  'paypal'
-      },
-    // Sets up the transaction when a payment button is clicked
-    createOrder: function (data) {
-      return fetch("mcdaidandsanderson.co.uk/api/orders", {
-        method: "POST",
-        // Use the "body" parameter to optionally pass additional order information
-        // such as product ID or amount
-        body: {
-          paymentSource: data.paymentSource
-        }
-      })
-        .then((response) => response.json())
-        .then((order) => order.id);
+.Buttons({
+  // Styles
+  style: {
+      color:  'silver',
+      shape:  'pill',
+      label:  'paypal'
     },
-    // Finalize the transaction after payer approval
-    onApprove: function (data) {
-      return fetch(`myserver.com/api/orders/${data.orderID}/capture`, {
-        method: "POST",
-      })
-        .then((response) => response.json())
-        .then((orderData) => {
-          console.log("Capture result", orderData, JSON.stringify(orderData, null, 2));
-          var transaction = orderData.purchase_units[0].payments.captures[0];
-        });
-    },
-    onError: function (error) {
-    }
-  })
-  .render("#paypal-button-container");
+  // Sets up the transaction when a payment button is clicked
+  createOrder: function (data) {
+    return fetch("mcdaidandsanderson.co.uk/api/orders", {
+      method: "POST",
+      // Use the "body" parameter to optionally pass additional order information
+      // such as product ID or amount
+      body: {
+        paymentSource: data.paymentSource
+      }
+    })
+      .then((response) => response.json())
+      .then((order) => order.id);
+  },
+  // Finalize the transaction after payer approval
+  onApprove: function (data) {
+    return fetch(`myserver.com/api/orders/${data.orderID}/capture`, {
+      method: "POST",
+    })
+      .then((response) => response.json())
+      .then((orderData) => {
+        console.log("Capture result", orderData, JSON.stringify(orderData, null, 2));
+        var transaction = orderData.purchase_units[0].payments.captures[0];
+      });
+  },
+  onError: function (error) {
+  }
+})
+.render("#paypal-button-container");
 
 const cardField = paypal.CardFields({
-    createOrder: function (data) {
-        return fetch("mcdaidandsanderson.co.uk/api/orders", {
-            method: "post",
-            body: {
-                paymentSource: data.paymentSource
-            }
-        })
-        .then((res) => {
-            return res.json();
-        })
-        .then((orderData) => {
-            return orderData.id;
-        });
-    },
-    onApprove: function (data) {
-        const { orderID } = data;
-        return fetch(`mcdaidandsanderson.co.uk/api/orders/${orderID}/capture`, {
-            method: "post",
-        })
-        .then((res) => {
-            return res.json();
-        })
-        .then((orderData) => {
-            // Redirect to success page
-        });
-    },
-    onError: function (error) {
-        // Do something with the error from the SDK
-    },
+  createOrder: function (data) {
+      return fetch("mcdaidandsanderson.co.uk/api/orders", {
+          method: "post",
+          body: {
+              paymentSource: data.paymentSource
+          }
+      })
+      .then((res) => {
+          return res.json();
+      })
+      .then((orderData) => {
+          return orderData.id;
+      });
+  },
+  onApprove: function (data) {
+      const { orderID } = data;
+      return fetch(`mcdaidandsanderson.co.uk/api/orders/${orderID}/capture`, {
+          method: "post",
+      })
+      .then((res) => {
+          return res.json();
+      })
+      .then((orderData) => {
+          // Redirect to success page
+      });
+  },
+  onError: function (error) {
+      // Do something with the error from the SDK
+  },
 });
 
 // Render each field after checking for eligibility
 if (cardField.isEligible()) {
-    const nameField = cardField.NameField();
-    nameField.render('#card-name-field-container');
+  const nameField = cardField.NameField();
+  nameField.render('#card-name-field-container');
 
-    const numberField = cardField.NumberField();
-    numberField.render('#card-number-field-container');
+  const numberField = cardField.NumberField();
+  numberField.render('#card-number-field-container');
 
-    const cvvField = cardField.CVVField();
-    cvvField.render('#card-cvv-field-container');
+  const cvvField = cardField.CVVField();
+  cvvField.render('#card-cvv-field-container');
 
-    const expiryField = cardField.ExpiryField();
-    expiryField.render('#card-expiry-field-container');
+  const expiryField = cardField.ExpiryField();
+  expiryField.render('#card-expiry-field-container');
 
-    // Add click listener to submit button and call the submit function on the CardField component
-    document.getElementById("card-field-submit-button").addEventListener("click", () => {
-        cardField
-        .submit()
-        .then(() => {
-            // submit successful
-        });
-    });
+  // Add click listener to submit button and call the submit function on the CardField component
+  document.getElementById("card-field-submit-button").addEventListener("click", () => {
+      cardField
+      .submit()
+      .then(() => {
+          // submit successful
+      });
+  });
 };
+}
+

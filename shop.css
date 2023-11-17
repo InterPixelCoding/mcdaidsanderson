@@ -41,7 +41,9 @@
     width: clamp(80vw, 40vw, 20vw)
 }
 
-.si-par {font-weight: 400;}
+.si-par {
+    font-weight: 400;
+}
 
 .si-title {font-weight: 500;}
 
@@ -171,7 +173,7 @@ form > span {
     display: grid;
     place-items: center;
     font-size: 3rem;
-    width: 30vw;
+    width: 50%;
     background: rgba(255, 255, 255, 0.119);
     border-radius: 1.125rem;
 }
@@ -190,8 +192,8 @@ form > span {
     justify-content: center;
 }
 
-#checkout-form > div {
-    width: 50%;
+#checkout-form > input {
+    width: 40%;
 }
 
 #checkout-form > button {
