@@ -132,7 +132,7 @@ form > button {
     padding: 2.5rem;
     border-radius: 1.125rem;
     border: 1px solid var(--not-active);
-    height: 50vh;
+    height: 90vh;
 }
 
 .exit {
@@ -141,17 +141,6 @@ form > button {
     right: 1rem;
     width: 1rem;
     aspect-ratio: 1;
-}
-
-form {gap: .5rem}
-
-form > span {
-    color: var(--not-active);
-    padding: 2rem 0 1rem 0;
-    font-size: 2rem;
-    font-weight: 300;
-    font-family: inherit;
-    grid-column-start: span 2;
 }
 
 .basket {
@@ -170,12 +159,15 @@ form > span {
 }
 
 .payment-options {
-    display: grid;
-    place-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10vw;
     font-size: 3rem;
-    width: 50%;
+    min-width: 60vw;
     background: rgba(255, 255, 255, 0.119);
     border-radius: 1.125rem;
+    overflow: auto;
 }
 
 .name-of-product {font-size: 1.5rem; font-weight: 200;}
@@ -184,27 +176,6 @@ form > span {
     height: 60%;
 }
 
-#checkout-form {
-    width: 100%;
-    padding: 1.125rem;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-#checkout-form > input {
-    width: 40%;
-}
-
-#checkout-form > button {
-    background: white;
-    font-family: inherit;
-    color: grey;
-    font-size: 1.125rem;
-    font-weight: 600;
-    padding: 1.125rem;
-    width: 50%;
-}
 
 @media (min-width: 2150px) {.si-container{ width: 50vw}}
 @media (max-width: 1750px) {

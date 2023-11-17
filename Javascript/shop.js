@@ -77,7 +77,7 @@ CDObjectArray.forEach(function(cd, index){
                             const checkoutImage = document.querySelector('.checkout > .basket > .cd-cover');
                             const checkoutPrice = document.querySelector('.total-price')
                             const checkoutShopItem = document.querySelector('.name-of-product')
-
+                            doPayment(cd.price)
                             checkoutShopItem.textContent = cd.title;
                             checkoutPrice.textContent = 'Total Price: £' + cd.price;
                             checkoutImage.style.backgroundImage = cdCover.style.backgroundImage;
@@ -166,98 +166,23 @@ exit.addEventListener("click", () => {
 })
 
 function doPayment(price) {
-    // Render the button component
-paypal
-.Buttons({
-  // Styles
-  style: {
-      color:  'silver',
-      shape:  'pill',
-      label:  'paypal'
-    },
-  // Sets up the transaction when a payment button is clicked
-  createOrder: function (data) {
-    return fetch("mcdaidandsanderson.co.uk/api/orders", {
-      method: "POST",
-      // Use the "body" parameter to optionally pass additional order information
-      // such as product ID or amount
-      body: {
-        paymentSource: data.paymentSource
-      }
-    })
-      .then((response) => response.json())
-      .then((order) => order.id);
-  },
-  // Finalize the transaction after payer approval
-  onApprove: function (data) {
-    return fetch(`myserver.com/api/orders/${data.orderID}/capture`, {
-      method: "POST",
-    })
-      .then((response) => response.json())
-      .then((orderData) => {
-        console.log("Capture result", orderData, JSON.stringify(orderData, null, 2));
-        var transaction = orderData.purchase_units[0].payments.captures[0];
-      });
-  },
-  onError: function (error) {
-  }
-})
-.render("#paypal-button-container");
-
-const cardField = paypal.CardFields({
-  createOrder: function (data) {
-      return fetch("mcdaidandsanderson.co.uk/api/orders", {
-          method: "post",
-          body: {
-              paymentSource: data.paymentSource
-          }
-      })
-      .then((res) => {
-          return res.json();
-      })
-      .then((orderData) => {
-          return orderData.id;
-      });
-  },
-  onApprove: function (data) {
-      const { orderID } = data;
-      return fetch(`mcdaidandsanderson.co.uk/api/orders/${orderID}/capture`, {
-          method: "post",
-      })
-      .then((res) => {
-          return res.json();
-      })
-      .then((orderData) => {
-          // Redirect to success page
-      });
-  },
-  onError: function (error) {
-      // Do something with the error from the SDK
-  },
-});
-
-// Render each field after checking for eligibility
-if (cardField.isEligible()) {
-  const nameField = cardField.NameField();
-  nameField.render('#card-name-field-container');
-
-  const numberField = cardField.NumberField();
-  numberField.render('#card-number-field-container');
-
-  const cvvField = cardField.CVVField();
-  cvvField.render('#card-cvv-field-container');
-
-  const expiryField = cardField.ExpiryField();
-  expiryField.render('#card-expiry-field-container');
-
-  // Add click listener to submit button and call the submit function on the CardField component
-  document.getElementById("card-field-submit-button").addEventListener("click", () => {
-      cardField
-      .submit()
-      .then(() => {
-          // submit successful
-      });
-  });
-};
+   paypal.Buttons({
+       createOrder: function(data, actions) {
+           return actions.order.create({
+               purchase_units: [
+                   {
+                       amount: {
+                           value: price,
+                       },
+                   },
+               ],
+           })
+       },
+       onApprove: function (data, actions) {
+           return actions.order.capture().then(function (details) {
+               alert("Transaction completed by " + details.payer.name.given_name)
+           })
+       },
+   }).render(".payment-options")
 }
 
