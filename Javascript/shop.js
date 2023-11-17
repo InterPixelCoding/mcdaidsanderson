@@ -2,30 +2,45 @@ const CDObjectArray = [
     {
         folder: 'my-folk-1',
         title: 'My Folk 1',
-        info: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet ex possimus reprehenderit? Iure ea incidunt facilis doloribus illo qui rerum laboriosam libero ratione ullam! Animi distinctio tempora minima dicta voluptas harum inventore atque, quod similique neque ex? Nesciunt at excepturi id saepe amet iste. ',
+        info: `Although both Brian and Michael are members of the band 'Kinfolk' unfortunately the band members all live in different parts of the country.  As a result getting together has its challenges!
+
+ 
+
+        However Brian continues to write songs and took the opportunity, particularly during the Covid lockdown period, to work on some solo material. "I wanted to write songs that were more relevant to me personally" says Brian speaking about his debut solo album 'My Folk 1'. "They should relate to my life experiences"
+        
+         
+        
+        The songs are undoubtedly folk and acoustic based but it is influenced by many genres of music and the use of vocal harmonies. The album covers a mix of subjects and topics that hopefully make you think and I'm sure that we can all relate to in some way at different periods in our lives. 
+        
+         
+        
+        Michael also plays on the album and enhances each of the songs he appears on with his own distinct and exceptional fiddle playing.
+        
+         
+        
+        As a result of the work they done together on the album and their ongoing work together since, Brian and Michael's musical relationship has really developed and continues to flourish! 
+        
+         
+        
+        Both are excited by their new venture together, 'McDaid & Sanderson'!`,
         tracks: [
-            'Track 1', 'Track 2', 'Track 3', 'Track 4', 'Track 5', 'Track 6', 'Track 7', 'Track 8', 'Track 9', 'Track 10',  
+            'Glasgow Girl', 
+            'My Wee Angel', 
+            'Winters Over', 
+            'Old Buncrana Town', 
+            'Eilean Mor', 
+            'Life Changes', 
+            'Things Are Just Not Looking Good', 
+            "If You Don't Want Me", 
+            "I'm Here For You",
+            "I'm Still Missing You",  
         ],
 
         youtubeLink: '#',
         spotifyLink: '#',
         appleMusicLink: '#',
 
-        price: 19.99
-    },
-    {
-        folder: 'my-folk-1',
-        title: 'My Folk 2',
-        info: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet ex possimus reprehenderit? Iure ea incidunt facilis doloribus illo qui rerum laboriosam libero ratione ullam! Animi distinctio tempora minima dicta voluptas harum inventore atque, quod similique neque ex? Nesciunt at excepturi id saepe amet iste. ',
-        tracks: [
-            'Track 1', 'Track 2', 'Track 3', 'Track 4', 'Track 5', 'Track 6', 'Track 7', 'Track 8', 'Track 9', 'Track 10',  
-        ],
-
-        youtubeLink: '#',
-        spotifyLink: '#',
-        appleMusicLink: '#',
-
-        price: 15.99
+        price: 10.00
     },
 ]
 
@@ -113,7 +128,6 @@ CDObjectArray.forEach(function(cd, index){
         mobilePrice.textContent = '£' + cd.price
 
         addClass('instant-show', [buyNowContainer, youtubeLink, spotifyLink, appleMusicLink, title, paragraph, trackTitles, links, cdCover])
-
                         buyNowButton.appendChild(buyNowButtonIcon)
                     buyNowContainer.appendChild(buyNowButton);
                     buyNowContainer.appendChild(price);
@@ -174,7 +188,7 @@ paypal
       },
     // Sets up the transaction when a payment button is clicked
     createOrder: function (data) {
-      return fetch("myserver.com/api/orders", {
+      return fetch("mcdaidandsanderson.co.uk/api/orders", {
         method: "POST",
         // Use the "body" parameter to optionally pass additional order information
         // such as product ID or amount
@@ -203,7 +217,7 @@ paypal
 
 const cardField = paypal.CardFields({
     createOrder: function (data) {
-        return fetch("myserver.com/api/orders", {
+        return fetch("mcdaidandsanderson.co.uk/api/orders", {
             method: "post",
             body: {
                 paymentSource: data.paymentSource
@@ -218,7 +232,7 @@ const cardField = paypal.CardFields({
     },
     onApprove: function (data) {
         const { orderID } = data;
-        return fetch(`myserver.com/api/orders/${orderID}/capture`, {
+        return fetch(`mcdaidandsanderson.co.uk/api/orders/${orderID}/capture`, {
             method: "post",
         })
         .then((res) => {

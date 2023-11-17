@@ -23,14 +23,14 @@
 .cd-cover {
     aspect-ratio: 1;
     border-radius: .5rem;
-    height: 30vh;
+    height: 40vh;
     background-size: contain;
     box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.5);
 }
 
 .si-container {
     display: flex;
-    width: 60vw;
+    width: 70vw;
     gap: 1.5vw;
     align-items: center;
 }

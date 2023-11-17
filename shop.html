@@ -60,14 +60,18 @@
                 <span class="total-price">Total Price: £</span>
             </div>
             <div class="payment-options" id="paypal-button-container">
-                <div id="checkout-form">
-                    <div id="card-name-field-container"></div>
+                <form id="checkout-form">
+                    <input class="name" type="name" placeholder="Cardholder Name (optional)">
+                    <input class="card-number" type="number" placeholder="Card number">
+                    <input class="card-expiry" type="number" placeholder="Expiry">
+                    <input class="card-cvv" type="number" placeholder="CVV">
+                    <!-- <div id="card-name-field-container"></div>
                     <div id="card-number-field-container"></div>
                     <div id="card-expiry-field-container"></div>
                     <div id="card-cvv-field-container"></div>
                     <button id="card-field-submit-button" type="button">Pay now with Card Fields</button>
-                   </div>
-            </div>
+                   </div> -->
+            </form>
             <svg class="exit" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M3.23047 29.9999L30 3.23035" stroke="white" stroke-width="5" stroke-linecap="round"/>
                 <path d="M3.23047 3.23035L30 29.9999" stroke="white" stroke-width="5" stroke-linecap="round"/>
