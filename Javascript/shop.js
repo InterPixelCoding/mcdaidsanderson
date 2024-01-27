@@ -164,6 +164,7 @@ cdCovers.forEach(cd => {
 const exit = document.querySelector('.exit')
 exit.addEventListener("click", () => {
     addClass('disabled', [checkout, popUp])
+    document.querySelectorAll('.payment-options > *').forEach(item => {item.remove()})
 })
 
 function doPayment(price) {

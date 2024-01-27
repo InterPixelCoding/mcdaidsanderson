@@ -20,6 +20,25 @@
     flex-basis: 1;
 }
 
+.heading-content {
+    position: relative;
+    width: 100%;
+    margin-block: 2rem;
+    text-align: center;
+    font-size: 4rem;
+}
+
+.heading-content::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50vw;
+    height: 5px;
+    background: radial-gradient(var(--primary-colour), transparent 60%);
+}
+
 .cd-cover {
     aspect-ratio: 1;
     border-radius: .5rem;
@@ -165,6 +184,7 @@ form > button {
     padding: 10vw;
     font-size: 3rem;
     min-width: 60vw;
+    height: fit-content;
     background: rgba(255, 255, 255, 0.119);
     border-radius: 1.125rem;
     overflow: auto;
@@ -180,7 +200,7 @@ form > button {
     position: relative;
     max-height: 8em;
     overflow: hidden;
-    background: linear-gradient(white 50%, transparent 80%);
+    background: linear-gradient(var(--primary-colour) 50%, transparent 80%);
     color: transparent;
     background-clip: text;
     -webkit-background-clip: text;
@@ -197,7 +217,7 @@ form > button {
     width: 100%;
     left: 0;
     text-align: center;
-    color: white;
+    color: var(--primary-colour);
     cursor: pointer;
     transition: all 200ms ease;
 }
@@ -205,13 +225,18 @@ form > button {
 .read-more:active, .read-more:focus {
     max-height: 100em;
     background: transparent;
-    color: white;
+    color: var(--primary-colour);
 }
 .read-more:focus::after {
     top: 100%;
     bottom: 0em;
     opacity: 0;
     transition: 200ms ease all;
+}
+
+body:not(:has(.pop-up.disabled)) {
+    height: 100vh;
+    overflow: hidden;
 }
 
 
