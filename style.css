@@ -163,9 +163,8 @@ header > nav > ul > a.current-page::after {width: 100%}
         animation: none;
     }
 
-    header:has(.menu-active) {
+    body > header:has(.menu-active) {
         position: fixed;
-        height: 100vh;
         background: rgba(0, 0, 0, 0.5);
     }
 

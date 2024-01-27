@@ -13,25 +13,29 @@ window.addEventListener('DOMContentLoaded', (event) => {
 	const hiddenElements = document.querySelectorAll('.hidden');
 	hiddenElements.forEach((el) => observer.observe(el));
 
-const header = document.querySelector('header')
-var headerHeight = header.offsetHeight;
-
-// height: auto hack with javascript
-setTimeout(hackHeight, 1000)
-function hackHeight() {
-	header.style.height =`${headerHeight+1}px`
+function fix_height(container) {
+	container.style.height = `${container.offsetHeight}px`
+	return container.offsetHeight;
 }
 
+function menu_logic(asd) {
+	const header = document.querySelector('header');
+	const original_height = fix_height(header);
+	console.log(original_height)
 	const menuButton = document.querySelector('.menu-button');
 	const menu = document.querySelector('header > nav')
 	menuButton.addEventListener("click", () => {
 		menu.classList.toggle('menu-active');
-		if(menuButton.innerHTML === `<i class="fa-solid fa-bars"></i>`) {
-			header.style.height = `100%`
-			menuButton.innerHTML = `<i class="fa-solid fa-xmark"></i>`;
-		} else {menuButton.innerHTML = `<i class="fa-solid fa-bars"></i>`; header.style.height = `${headerHeight+1}px`}
-	})
-});
+		if(menu.classList.contains('menu-active')) {
+			header.style.height = `100vh`
+		} else {
+			header.style.height = `${original_height}px`
+		}
+	});
+}
+
+setTimeout(menu_logic, 1000)
+
 
 // Animation Delay
 document.addEventListener("DOMContentLoaded", () => {
@@ -39,4 +43,4 @@ document.addEventListener("DOMContentLoaded", () => {
 	instantShow.forEach(function(element, index) {
 		element.style.setProperty("--load-delay", `${index * 50}ms`);
 	});
-})
+})})
