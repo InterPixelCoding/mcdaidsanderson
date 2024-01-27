@@ -3,8 +3,7 @@ const CDObjectArray = [
         folder: 'my-folk-1',
         title: 'My Folk 1',
         info: 
-`
-Although both Brian and Michael are members of the band 'Kinfolk' unfortunately the band members all live in different parts of the country.  As a result getting together has its challenges!
+`Although both Brian and Michael are members of the band 'Kinfolk' unfortunately the band members all live in different parts of the country.  As a result getting together has its challenges!
 However Brian continues to write songs and took the opportunity, particularly during the Covid lockdown period, to work on some solo material. "I wanted to write songs that were more relevant to me personally" says Brian speaking about his debut solo album 'My Folk 1'. "They should relate to my life experiences"
 The songs are undoubtedly folk and acoustic based but it is influenced by many genres of music and the use of vocal harmonies. The album covers a mix of subjects and topics that hopefully make you think and I'm sure that we can all relate to in some way at different periods in our lives. 
 Michael also plays on the album and enhances each of the songs he appears on with his own distinct and exceptional fiddle playing.
@@ -97,7 +96,9 @@ CDObjectArray.forEach(function(cd, index){
 
         cdCover.style.backgroundImage = `url('./Shop/${cd.folder}/cd-cover.png')`
         title.textContent = cd.title;
+        paragraph.tabIndex = '1'
         paragraph.innerHTML = (cd.info).replace(/\n/g, "<br>");
+        if(paragraph.innerHTML.length > 500) {paragraph.classList.add('read-more')}
         cd.tracks.forEach( function(track, index) {
             newTrackSpan = document.createElement("span");
             newTrackSpan.textContent = cd.tracks[index];
