@@ -28,7 +28,7 @@ Both are excited by their new venture together, 'McDaid & Sanderson'!
         appleMusicLink: '#',
 
         price: 10.00
-    },
+    }
 ]
 
 
@@ -82,6 +82,11 @@ CDObjectArray.forEach(function(cd, index){
                             checkoutImage.style.backgroundImage = cdCover.style.backgroundImage;
                             popUp.classList.remove('disabled')
                             checkout.classList.remove('disabled')
+                        })
+
+                        const scrollContainer = document.querySelector('.scroll-container')
+                        scrollContainer.addEventListener("click", () => {
+                            console.log('Clicked!')
                         })
 
         newShopItem.classList.add('si-container');
@@ -164,7 +169,7 @@ cdCovers.forEach(cd => {
 const exit = document.querySelector('.exit')
 exit.addEventListener("click", () => {
     addClass('disabled', [checkout, popUp])
-    document.querySelectorAll('.payment-options > *').forEach(item => {item.remove()})
+    document.querySelectorAll('.scroll-container > *').forEach(item => {item.remove()})
 })
 
 function doPayment(price) {
@@ -185,6 +190,6 @@ function doPayment(price) {
                alert("Transaction completed by " + details.payer.name.given_name)
            })
        },
-   }).render(".payment-options")
+   }).render(".scroll-container")
 }
 

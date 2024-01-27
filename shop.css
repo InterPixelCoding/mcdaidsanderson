@@ -179,12 +179,12 @@ form > button {
 
 .payment-options {
     display: flex;
+    position: relative;
     justify-content: center;
     align-items: center;
     padding: 10vw;
     font-size: 3rem;
     min-width: 60vw;
-    height: fit-content;
     background: rgba(255, 255, 255, 0.119);
     border-radius: 1.125rem;
     overflow: auto;
@@ -239,6 +239,22 @@ body:not(:has(.pop-up.disabled)) {
     overflow: hidden;
 }
 
+.scroll-container {
+    position: absolute;
+    display: flex;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: fit-content;
+    min-width: 30vw;
+    padding-inline: 2rem;
+}
+
+@media (min-width: 1750px) {
+    .scroll-container {
+        margin-top: 5rem;
+    }
+}
 
 @media (min-width: 2150px) {.si-container{width: 50vw}}
 @media (max-width: 1750px) {
@@ -268,6 +284,13 @@ body:not(:has(.pop-up.disabled)) {
     .si-info {
         width: auto;
     }
+    .payment-options {
+        padding: 0px;
+        background: transparent;
+    }
+    .cd-cover.no-hover {
+        display: none;
+    }
 }
 @media (max-width: 1450px) {.si-container{width: 80vw;}}
 @media (max-width: 1100px) {
@@ -279,8 +302,9 @@ body:not(:has(.pop-up.disabled)) {
     .buy-now {margin-left: auto; justify-content: right;}    
 }
 @media (max-width: 950px) {
-    .checkout {gap: 5em}
-    .basket > .cd-cover {width: 20vh; height: 20vh;}
+    .scroll-container {
+        width: 100%;
+    }
     .si-info {justify-content: center;}
     .links {
         display: grid;
@@ -290,13 +314,42 @@ body:not(:has(.pop-up.disabled)) {
     .si-title {font-size: 4rem;}
     .buy-now {grid-column-start: 1; grid-column-end: 14; width: 100%; justify-content: center;}
     .links > a:nth-child(1) {grid-column-start: 6;}
-    .checkout {width: 90vw}
+    .checkout {
+        flex-direction: column;
+        height: auto;
+        width: 60vw;
+        height: 80vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+        align-items: center;
+    }
+    form {width: 100%; max-width: none;}
+    form > span {text-align: center; font-size: 2.5rem;}
+    .payment-options {height: 25em; width: 90%}
+    .si-container {
+        flex-direction: column;
+        width: 40vw;
+    }
+    .si-info {
+        width: auto;
+    }
+    .payment-options {
+        padding: 0px;
+        background: transparent;
+    }
+    .cd-cover.no-hover {
+        display: none;
+    }
 }
 
 @media (max-width: 660px) {
     .si-container {width: 80vw;} 
     .si-title{font-size: 3rem;}
     .si-par{font-weight: 100;}
+    .checkout {
+        width: 90vw;
+        height: 90vh;
+    }
    form {
        display: flex;
        flex-direction: column;
@@ -305,6 +358,7 @@ body:not(:has(.pop-up.disabled)) {
 }
 @media (max-width: 500px) {
     span.price.mobile-hide {display: none;}
+    .total-price {font-size: 1.5rem;}
     .links > a > img {height: 1.5rem;}
     .cd-cover {width: 70vw; height: auto; position: relative; overflow: hidden;}
     .cd-cover > span {
@@ -316,6 +370,16 @@ body:not(:has(.pop-up.disabled)) {
         font-size: 2rem;
         background: radial-gradient(102.65% 102.14% at 73.58% 73.86%, var(--shadow-colour) 32.27%, rgba(0, 0, 0, 0.00) 73.61%);
     };
+    .checkout > .basket {
+        display: flex;
+        flex-direction: column;
+    }
+    .scroll-container {
+        left: 0;
+        transform: none;
+        padding: .5rem;
+        transform: scale(.9) translateY(10%);
+    }
 }
 @media (max-width: 430px) {
     .links {display: flex; flex-wrap: wrap; justify-content: center;}
