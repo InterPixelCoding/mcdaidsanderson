@@ -187,7 +187,7 @@ function doPayment(price) {
        },
        onApprove: function (data, actions) {
            return actions.order.capture().then(function (details) {
-               alert("Transaction completed by " + details.payer.name.given_name)
+               alert("Your transaction has been successfully completed, with a total cost of £" + price)
            })
        },
    }).render(".scroll-container")
