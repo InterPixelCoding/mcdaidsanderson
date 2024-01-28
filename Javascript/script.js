@@ -13,12 +13,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
 	const hiddenElements = document.querySelectorAll('.hidden');
 	hiddenElements.forEach((el) => observer.observe(el));
 
+});
+
 function fix_height(container) {
 	container.style.height = `${container.offsetHeight}px`
 	return container.offsetHeight;
 }
 
-function menu_logic(asd) {
+function menu_logic() {
 	const header = document.querySelector('header');
 	const original_height = fix_height(header);
 	console.log(original_height)
@@ -43,4 +45,4 @@ document.addEventListener("DOMContentLoaded", () => {
 	instantShow.forEach(function(element, index) {
 		element.style.setProperty("--load-delay", `${index * 50}ms`);
 	});
-})})
+});
