@@ -23,19 +23,16 @@
 .heading-content {
     position: relative;
     width: 100%;
-    margin-block: 2rem;
+    margin-top: 1rem;
     text-align: center;
-    font-size: 4rem;
+    font-size: 2rem;
 }
 
-.heading-content::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 50vw;
-    height: 5px;
+.section-divider {
+    display: flex;
+    margin: auto;
+    width: 80vw;
+    height: 3px;
     background: radial-gradient(var(--primary-colour), transparent 60%);
 }
 
@@ -223,7 +220,8 @@ form > button {
 }
 
 .read-more:active, .read-more:focus {
-    max-height: 100em;
+    max-height: 20em;
+    overflow: auto;
     background: transparent;
     color: var(--primary-colour);
 }
@@ -364,12 +362,22 @@ body:not(:has(.pop-up.disabled)) {
     .cd-cover > span {
         display: flex;
         position: absolute;
-        bottom: -2em;
-        right: -2em;
-        padding: 5rem;
+        bottom: .25rem;
+        right: .25rem;
         font-size: 2rem;
-        background: radial-gradient(102.65% 102.14% at 73.58% 73.86%, var(--shadow-colour) 32.27%, rgba(0, 0, 0, 0.00) 73.61%);
-    };
+    }
+    .cd-cover > span::before {
+        position: absolute;
+        content: '';
+        width: 7rem;
+        height: 7rem;
+        transform: translate(-1rem, -1rem);
+        border-radius: 50%;
+        filter: blur(10px);
+        z-index: -1;
+        background: var(--accent-colour);
+        opacity: 0.8;
+    }
     .checkout > .basket {
         display: flex;
         flex-direction: column;

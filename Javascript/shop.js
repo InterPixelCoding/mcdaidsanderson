@@ -26,6 +26,7 @@ Both are excited by their new venture together, 'McDaid & Sanderson'!
         youtubeLink: '#',
         spotifyLink: '#',
         appleMusicLink: '#',
+        accent: '#001b00',
 
         price: 10.00
     }
@@ -59,6 +60,7 @@ CDObjectArray.forEach(function(cd, index){
         const newShopItem = document.createElement("div");
             const cdCover = document.createElement("div");
                 const mobilePrice = document.createElement("span")
+                mobilePrice.style.setProperty("--accent-colour", cd.accent);
             const shopItemInfo = document.createElement("div");
                 const title = document.createElement("h2");
                 const paragraph = document.createElement("p");
@@ -102,6 +104,7 @@ CDObjectArray.forEach(function(cd, index){
         cdCover.style.backgroundImage = `url('./Shop/${cd.folder}/cd-cover.png')`
         title.textContent = cd.title;
         paragraph.tabIndex = '1'
+        paragraph.classList.add('custom-scroll-bar');
         paragraph.innerHTML = (cd.info).replace(/\n/g, "<br>");
         if(paragraph.innerHTML.length > 500) {paragraph.classList.add('read-more')}
         cd.tracks.forEach( function(track, index) {

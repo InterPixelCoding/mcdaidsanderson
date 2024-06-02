@@ -42,14 +42,16 @@
     display: flex;
     flex-direction: column;
     max-width: 80vw;
+    gap: .25rem;
+    filter: drop-shadow(0 .25rem .25rem rgba(0, 0, 0, 0.2))
 }
 
 .gig-container:not(:has(h2.today)) {
-    margin-block: 2.5rem;
+    margin-block: 1.5rem;
 }
 
 .gig-container > p {
-    max-width: 50vw;
+    max-width: 100%;
     margin-top: 0.2rem;
 }
 
@@ -65,13 +67,14 @@ span.date {
     color: var(--not-active);
     font-size: 1.5rem;
     margin-bottom: -0.3em;
-    transform: scaleY(0.9)
+    transform: scaleY(0.9);
+    opacity: 0.6;
 }
 
 h2.location {
     color: var(--accent-colour);
     font-size: 3rem;
-    font-weight: 550;
+    font-weight: 500;
 }
 
 .gig-container:has(h2.today) {max-width: 90vw;}
@@ -79,7 +82,7 @@ h2.location {
 h2.today {
     color: var(--primary-colour); 
     font-weight: 400;
-    font-size: 2.5rem;
+    font-size: 1.75rem;
 }
 
 h2.today::before {
