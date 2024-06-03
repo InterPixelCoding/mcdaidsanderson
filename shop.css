@@ -32,8 +32,13 @@
     display: flex;
     margin: auto;
     width: 80vw;
+    max-width: 40em;
     height: 3px;
     background: radial-gradient(var(--primary-colour), transparent 60%);
+}
+
+@media (min-width: 750px) {
+    .section-divider {margin-block: 2rem;}
 }
 
 .cd-cover {
@@ -105,7 +110,7 @@
     align-items: center;
     font-size: 1.5rem;
     color: var(--primary-colour);
-    font-family: 'Roboto Condensed', sans-serif;
+    font-family: inherit;
     cursor: pointer;
 }
 
@@ -202,7 +207,7 @@ form > button {
     background-clip: text;
     -webkit-background-clip: text;
     margin-bottom: 1em;
-    transition: 200ms ease all;
+    transition: .8s ease-in-out all;
 }
 
 .read-more::after {
