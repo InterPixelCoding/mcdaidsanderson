@@ -13,7 +13,16 @@ window.addEventListener('DOMContentLoaded', (event) => {
 	const hiddenElements = document.querySelectorAll('.hidden');
 	hiddenElements.forEach((el) => observer.observe(el));
 
+	setTimeout(() => {
+		if(hiddenElements.length > 0) {
+			console.log(hiddenElements)
+			hiddenElements.forEach(el => {el.classList.remove('hidden')})
+		}
+	}, 2000);
+
 });
+
+
 
 function fix_height(container) {
 	container.style.height = `${container.offsetHeight}px`
@@ -23,7 +32,6 @@ function fix_height(container) {
 function menu_logic() {
 	const header = document.querySelector('header');
 	const original_height = fix_height(header);
-	console.log(original_height)
 	const menuButton = document.querySelector('.menu-button');
 	const menu = document.querySelector('header > nav')
 	menuButton.addEventListener("click", () => {
