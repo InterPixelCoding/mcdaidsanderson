@@ -1,29 +1,3 @@
-window.addEventListener('DOMContentLoaded', (event) => { 
-	// animate in on scroll
-	const observer = new IntersectionObserver((entries) => {
-		entries.forEach((entry => {
-			console.log(entry)
-			if (entry.isIntersecting) {
-				entry.target.classList.add('show');
-                entry.target.classList.remove('hidden')
-			}
-		}))
-	})
-
-	const hiddenElements = document.querySelectorAll('.hidden');
-	hiddenElements.forEach((el) => observer.observe(el));
-
-	setTimeout(() => {
-		if(hiddenElements.length > 0) {
-			console.log(hiddenElements)
-			hiddenElements.forEach(el => {el.classList.remove('hidden')})
-		}
-	}, 2000);
-
-});
-
-
-
 function fix_height(container) {
 	container.style.height = `${container.offsetHeight}px`
 	return container.offsetHeight;

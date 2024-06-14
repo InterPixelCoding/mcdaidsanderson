@@ -98,11 +98,6 @@ section {
     padding: 2rem 4rem;
 }
 
-.hidden {
-    opacity: 0;
-    transform: translateY(-2rem) rotateY(30deg);
-}
-
 .show {
     opacity: 1;
     transform: translateY(0rem) rotateY(0deg);
