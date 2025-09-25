@@ -99,7 +99,7 @@ section {
 }
 
 .show {
-    opacity: 1;
+    opacity: 1.01;
     transform: translateY(0rem) rotateY(0deg);
     transition: all 1s ease;
 }
