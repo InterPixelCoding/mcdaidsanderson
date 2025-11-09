@@ -71,6 +71,34 @@
     transition: 100ms ease;
 }
 
+.album-sample {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.album-sample > .info {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    height: fit-content;
+}
+
+.album-sample > .info > a {
+    font-size: 3rem;
+}
+
+.audio-sample, .info > span {margin-top: 2rem;}
+
+.album-sample > img {
+    margin-block: auto;
+    height: 30vw;
+    border-radius: .5rem;
+    aspect-ratio: 1 / 1;
+    grid-row: span 3;
+    filter: drop-shadow(0 .25rem .25rem rgba(0,0,0,0.3))
+}
+
 
 @media (max-width: 1600px) {.audio-widget-container {grid-template-columns: repeat(3, 1fr);}}
 @media (max-width: 1010px) {.audio-widget-container {grid-template-columns: repeat(2, 1fr); margin: 1.5rem auto; width: 95%}}
@@ -78,6 +106,17 @@
     .track-container > h3 {height: 2.5em;}
     .center {margin: 0; padding: 0; margin-bottom: 2rem;}
     .video-iframe {width: 90vw;}
+    .album-sample {
+        padding-inline: 2.5rem;
+    }
+    .album-sample > img {
+        width: 100%;
+        height: auto;
+    }
+    .album-sample, .album-sample > .info {
+        flex-direction: column;  align-items: center;
+    }
+    .info > span {text-align: center;}
 }
 @media (max-width: 660px) {
     .audio-widget-container {grid-template-columns: repeat(1, 1fr);}
