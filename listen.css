@@ -75,6 +75,7 @@
     display: flex;
     align-items: center;
     gap: 2rem;
+    transition: 750ms ease all;
 }
 
 .album-sample > .info {
@@ -97,6 +98,14 @@
     aspect-ratio: 1 / 1;
     grid-row: span 3;
     filter: drop-shadow(0 .25rem .25rem rgba(0,0,0,0.3))
+}
+
+.hidden {
+    opacity: 0;
+}
+
+.album-sample:not(.hidden) {
+    opacity: 1;
 }
 
 

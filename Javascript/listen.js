@@ -99,3 +99,6 @@ listenContainer.appendChild(IconContainer);
 const audio_sample = document.querySelector(".audio-sample");
 const sample_track = create_audio_track("I Wish That I Was Home");
 audio_sample.appendChild(sample_track);
+setTimeout(() => {
+    document.querySelector(".album-sample").classList.remove("hidden");
+}, 1000);
